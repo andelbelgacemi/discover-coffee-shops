@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-image: url("https://discover-coffee-stores-latest.vercel.app/static/background.png");
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: repeat;
+    min-height: 100vh;
+    @apply antialiased;
+  }
+
+  h1 {
+    @apply text-white text-center text-5xl font-bold mb-8;
+  }
+
+  h2 {
+    @apply text-xl font-semibold text-gray-900;
+  }
+
+  button {
+    @apply bg-blue-600 text-white px-5 py-2 rounded-lg cursor-pointer
+           transition hover:bg-blue-700;
+  }
+
+  a {
+    @apply text-indigo-900 no-underline;
+  }
+}
+
+@layer components {
+  .card-grid {
+    @apply grid gap-6 p-6
+           grid-cols-1
+           sm:grid-cols-2
+           lg:grid-cols-3;
+  }
+
+  .card {
+    @apply flex flex-col overflow-hidden
+           rounded-xl bg-white/90 backdrop-blur
+           shadow-lg transition-transform transition-shadow
+           hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .card-image {
+    @apply relative w-full aspect-[13/8] overflow-hidden;
+  }
+
+  .card-image img {
+    @apply object-cover transition-transform duration-300;
+  }
+
+  .card:hover .card-image img {
+    @apply scale-105;
+  }
+
+  .card-content {
+    @apply p-4;
+  }
+
+  .card-content h2 {
+    @apply text-lg font-semibold text-gray-900;
+  }
+}

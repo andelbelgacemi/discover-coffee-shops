@@ -43,7 +43,6 @@ export default async function Page({
             />
           </div>
 
-          {/* Content */}
           <div className="flex flex-1 flex-col justify-between">
             <div>
               

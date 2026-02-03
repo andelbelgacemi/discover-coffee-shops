@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import Banner from "./banner.client";
+import Navbar from "./Navbar.client";
 import Card from "./Card.client";
+import Footer from "./Footer.client";
 import type { CoffeeStore } from "../lib/geopify";
 
 const randomLatLon = () => {
@@ -63,39 +64,42 @@ export default function HomeClient({
 
   return (
     <>
-      <Banner onSearch={handleSearch} />
+      <Navbar onSearch={handleSearch} />
 
-      <h2 className="mb-4 text-xl font-bold">Featured</h2>
-      <div className="card-grid">
-        {featured.map((s) => (
-          <Card
-    key={s.id}
-  name={s.name}
-  imageURL={s.imageURL}
-  href={`/coffee-stores/${s.id}`}
-/>
-
-        ))}
-      </div>
-
-      <h2 className="mt-10 mb-4 text-xl font-bold">Nearby</h2>
-      <div className="card-grid">
-        {nearby.map((s) => (
-        <Card
-            key={s.id}
-            name={s.name}
-            imageURL={s.imageURL}
-            href={`/coffee-stores/${s.id}`}
-        />
-
-        ))}
-      </div>
-
-      {isPending && (
-        <p className="mt-4 text-sm text-gray-500">
-          Searching new coffee shops ☕
-        </p>
-      )}
+      <main className="mx-auto max-w-6xl px-4 pt-8">
+        <div className="bg-gradient-to-r from-amber-400 to-red-400 rounded-lg">
+        <h2 className="mb-4 text-xl font-bold text-gray-500">Featured</h2>
+        <div className="card-grid">
+          {featured.map((s) => (
+            <Card
+              key={s.id}
+              name={s.name}
+              imageURL={s.imageURL}
+              href={`/coffee-stores/${s.id}`}
+            />
+          ))}
+        </div>
+        </div>
+        <div className="bg-gradient-to-r from-amber-400 to-red-400 rounded-lg">
+        <h2 className="mt-10 mb-4 text-xl font-bold text-gray-500">Nearby</h2>
+        <div className="card-grid">
+          {nearby.map((s) => (
+            <Card
+              key={s.id}
+              name={s.name}
+              imageURL={s.imageURL}
+              href={`/coffee-stores/${s.id}`}
+            />
+          ))}
+        </div>
+        </div>
+        {isPending && (
+          <p className="mt-6 text-sm text-gray-500">
+            Searching new coffee shops ☕
+          </p>
+        )}
+      </main>
+      <Footer />
     </>
   );
 }

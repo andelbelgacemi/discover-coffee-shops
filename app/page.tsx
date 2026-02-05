@@ -1,8 +1,7 @@
 import HomeClient from "../components/HomeClient.client";
 import { getNearbyCoffeeStores } from "../lib/geopify";
 
-export default async function Home() {
-  const CITIES = [
+const CITIES = [
   {
     name: "New York",
     lat: 40.740121,
@@ -18,23 +17,30 @@ export default async function Home() {
     lat: 51.507351,
     lon: -0.127758,
   },
-  ];
-  function getRandomCity() {
+];
+
+function getRandomCity() {
   return CITIES[Math.floor(Math.random() * CITIES.length)];
-  }
-const city = getRandomCity();
+}
 
-console.log("Fetching coffee stores for:", city.name);
+export default async function Home() {
+  // 🔀 Pick random city for FEATURED
+  const featuredCity = getRandomCity();
 
-const featuredStores = (await getNearbyCoffeeStores(
-  city.lat,
-  city.lon
-)).slice(0, 3);
+  console.log("Fetching FEATURED coffee stores for:", featuredCity.name);
 
-  const nearbyStores = await getNearbyCoffeeStores(48.864716, 2.350466);
+  const featuredStores = (
+    await getNearbyCoffeeStores(featuredCity.lat, featuredCity.lon)
+  ).slice(0, 3);
+
+  // 📍 Fixed city for NEARBY (Paris example)
+  const nearbyStores = await getNearbyCoffeeStores(
+    48.864716,
+    2.350466
+  );
 
   return (
-    <main>
+    <main className="min-h-screen">
       <HomeClient
         initialFeatured={featuredStores}
         nearby={nearbyStores}
